@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import AIModelSuite from './AIModelSuite';
+import './medi-chat.css';
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import {
     Brain,
@@ -657,7 +659,7 @@ const Process = () => {
     );
 };
 
-const Portfolio = () => {
+const Portfolio = ({ setPage }) => {
     const projects = [
         {
             title: 'ENTERPRISE AI CORE',
@@ -738,7 +740,11 @@ const Portfolio = () => {
                                         <span className="metric-label">IMPACT_METRIC</span>
                                         <span className="metric-value">{project.result}</span>
                                     </div>
-                                    <div className="node-action">
+                                    <div
+                                        className="node-action"
+                                        onClick={() => setPage('ai-suite')}
+                                        style={{ cursor: 'pointer' }}
+                                    >
                                         <ArrowRight size={18} />
                                     </div>
                                 </div>
@@ -1102,12 +1108,22 @@ function App() {
                             <Services />
                             <VideoDemo />
                             <Process />
-                            <Portfolio />
+                            <Portfolio setPage={setPage} />
                             <Insights setPage={setPage} />
                             <Team />
                             <WhyChooseUs />
                             <FAQ />
                             <Contact />
+                        </motion.div>
+                    ) : page === 'ai-suite' ? (
+                        <motion.div
+                            key="suite"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            style={{ position: 'relative', zIndex: 9999 }}
+                        >
+                            <AIModelSuite setPage={setPage} />
                         </motion.div>
                     ) : (
                         <motion.div

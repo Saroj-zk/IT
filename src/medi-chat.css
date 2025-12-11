@@ -1,0 +1,443 @@
+/* MediSynth Chat Styles - Refined Grok-like Theme */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap');
+
+.medi-chat-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000;
+    /* Pure black like Grok */
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    z-index: 10000;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Header */
+.medi-header {
+    height: 60px;
+    border-bottom: 1px solid #1f1f1f;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 20;
+}
+
+.medi-header-left {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.medi-logo-box {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 6px;
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #333;
+    color: #00f0ff;
+}
+
+.medi-title-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.2;
+}
+
+.medi-app-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #fff;
+}
+
+.medi-app-title .pro-badge {
+    background: linear-gradient(135deg, #00f0ff, #00afff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: 4px;
+    font-weight: 700;
+}
+
+.medi-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: #666;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #00ff88;
+    box-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
+}
+
+/* Main Layout */
+.medi-main {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    background: radial-gradient(circle at 50% 30%, #0a0f14 0%, #000000 70%);
+}
+
+.medi-chat-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+/* Messages */
+.medi-messages-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    scrollbar-width: thin;
+    scrollbar-color: #333 transparent;
+}
+
+.medi-message-row {
+    display: flex;
+    gap: 1.25rem;
+    opacity: 0;
+    animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.medi-message-row.user {
+    flex-direction: row-reverse;
+}
+
+.medi-avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.medi-avatar.ai {
+    background: rgba(0, 240, 255, 0.1);
+    color: #00f0ff;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+}
+
+.medi-avatar.user {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* Message Bubbles */
+.medi-message-bubble {
+    max-width: 85%;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #e0e0e0;
+}
+
+.medi-message-bubble.ai {
+    /* No background for AI mostly, just text or very subtle */
+    padding: 0;
+}
+
+.medi-message-bubble.user {
+    background: #1a1a1a;
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px;
+    border-top-right-radius: 2px;
+    color: #fff;
+    border: 1px solid #333;
+}
+
+.medi-sender-name {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.medi-typing {
+    display: flex;
+    gap: 4px;
+    padding: 0.5rem 0;
+}
+
+.medi-typing span {
+    width: 4px;
+    height: 4px;
+    background: #666;
+    border-radius: 50%;
+    animation: typing 1.4s infinite ease-in-out both;
+}
+
+.medi-typing span:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.medi-typing span:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes typing {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0);
+    }
+
+    40% {
+        transform: scale(1);
+    }
+}
+
+/* Input Area - Floating */
+.medi-input-wrapper {
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.medi-input-box {
+    background: #0f0f10;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 0.75rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.medi-input-box:focus-within {
+    border-color: #555;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+.medi-textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #fff;
+    resize: none;
+    padding: 0.5rem;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    min-height: 48px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.medi-textarea::placeholder {
+    color: #555;
+}
+
+.medi-input-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.medi-tools {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.medi-btn-tool {
+    padding: 6px;
+    color: #666;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+}
+
+.medi-btn-tool:hover {
+    color: #00f0ff;
+    background: rgba(0, 240, 255, 0.05);
+}
+
+.medi-send-area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.char-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: #444;
+}
+
+.medi-btn-send {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: #222;
+    color: #666;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: not-allowed;
+    transition: all 0.2s;
+}
+
+.medi-btn-send.active {
+    background: #00f0ff;
+    color: #000;
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+}
+
+.medi-disclaimer {
+    text-align: center;
+    font-size: 0.7rem;
+    color: #444;
+    margin-top: 0.75rem;
+}
+
+/* Sidebar */
+.medi-sidebar {
+    width: 320px;
+    border-left: 1px solid #1f1f1f;
+    background: #050505;
+    display: none;
+    flex-direction: column;
+}
+
+@media (min-width: 1100px) {
+    .medi-sidebar {
+        display: flex;
+    }
+}
+
+.medi-sidebar h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: #666;
+    margin: 1.5rem 1.5rem 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.medi-metric-card {
+    margin: 0 1.5rem 0.75rem;
+    background: #0f0f0f;
+    border: 1px solid #222;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.metric-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.metric-label {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.metric-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.metric-bar {
+    height: 4px;
+    background: #222;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.metric-fill {
+    height: 100%;
+    border-radius: 2px;
+}
+
+.list-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: calc(100% - 3rem);
+    margin: 0 1.5rem 0.5rem;
+    padding: 0.75rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    text-align: left;
+}
+
+.list-btn:hover {
+    background: #0f0f0f;
+    border-color: #222;
+    color: #fff;
+}
+
+/* Colors */
+.text-cyan {
+    color: #00f0ff;
+}
+
+.text-green {
+    color: #00ff88;
+}
+
+.bg-cyan {
+    background: #00f0ff;
+}
+
+.bg-green {
+    background: #00ff88;
+}

@@ -369,6 +369,7 @@ a {
     line-height: 1.1;
     background: linear-gradient(180deg, #FFFFFF 0%, #71717a 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 1.5rem;
     letter-spacing: -0.02em;
@@ -708,6 +709,7 @@ a {
     max-width: 90%;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     /* Truncate text */
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -1381,10 +1383,7 @@ a {
     gap: 1rem;
 }
 
-display: flex;
-flex-direction: column;
-gap: 1rem;
-}
+
 
 /* Video/Agent Section */
 .agent-interface {
@@ -1886,6 +1885,7 @@ gap: 1rem;
     margin-bottom: 4rem;
     background: linear-gradient(to right, #ffffff, #a5b4fc);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
     position: relative;
